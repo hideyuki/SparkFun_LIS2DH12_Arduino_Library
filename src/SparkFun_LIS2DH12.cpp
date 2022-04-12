@@ -53,6 +53,9 @@ bool SPARKFUN_LIS2DH12::begin(uint8_t i2cAddress, TwoWire &wirePort)
   //Enable temperature sensor
   enableTemperature();
 
+  //Enable accelerometer sensor
+  enableAccel(1, 1, 1);
+
   //Set device in continuous mode with 12 bit resol.
   setMode(LIS2DH12_HR_12bit);
 
@@ -376,6 +379,12 @@ uint8_t SPARKFUN_LIS2DH12::getScale(void)
   lis2dh12_fs_t scale;
   lis2dh12_full_scale_get(&dev_ctx, &scale);
   return ((uint8_t)scale);
+}
+
+//Enable the accelerometer sensor
+void SPARKFUN_LIS2DH12::enableAccel(uint8_t xen, uint8_t yen, uint8_t zen)
+{
+  lis2dh12_operating_acc_enable_set(&dev_ctx, xen, yen, zen);
 }
 
 //Enable the onboard temperature sensor

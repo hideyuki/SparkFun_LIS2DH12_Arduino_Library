@@ -308,6 +308,35 @@ int32_t lis2dh12_temperature_meas_get(lis2dh12_ctx_t *ctx,
 }
 
 /**
+    @brief  Enable x,y,z accel.[set]
+
+    @param  ctx      read / write interface definitions
+    @param  xen      X enable. 1: Enable, 0: Disable
+    @param  yen      Y enable. 1: Enable, 0: Disable
+    @param  zen      Z enable. 1: Enable, 0: Disable
+    @retval          interface status (MANDATORY: return 0 -> no Error)
+
+*/
+int32_t lis2dh12_operating_acc_enable_set(lis2dh12_ctx_t *ctx, uint8_t xen, uint8_t yen, uint8_t zen)
+{
+  lis2dh12_ctrl_reg1_t ctrl_reg1;
+  lis2dh12_ctrl_reg4_t ctrl_reg4;
+  int32_t ret;
+
+  ret = lis2dh12_read_reg(ctx, LIS2DH12_CTRL_REG1,
+                          (uint8_t*)&ctrl_reg1, 1);
+  if (ret == 0) {
+    // Enable x,y,z accel
+    ctrl_reg1.xen = 1;
+    ctrl_reg1.yen = 1;
+    ctrl_reg1.zen = 1;
+
+    ret = lis2dh12_write_reg(ctx, LIS2DH12_CTRL_REG1, (uint8_t*)&ctrl_reg1, 1);
+  }
+  return ret;
+}
+
+/**
     @brief  Operating mode selection.[set]
 
     @param  ctx      read / write interface definitions

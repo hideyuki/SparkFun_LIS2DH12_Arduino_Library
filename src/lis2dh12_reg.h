@@ -497,6 +497,9 @@ int32_t lis2dh12_temperature_meas_set(lis2dh12_ctx_t *ctx,
 int32_t lis2dh12_temperature_meas_get(lis2dh12_ctx_t *ctx,
                                       lis2dh12_temp_en_t *val);
 
+int32_t lis2dh12_operating_acc_enable_set(lis2dh12_ctx_t *ctx,
+                                          uint8_t xen, uint8_t yen, uint8_t zen);
+
 typedef enum {
   LIS2DH12_HR_12bit   = 0,
   LIS2DH12_NM_10bit   = 1,

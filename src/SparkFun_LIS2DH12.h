@@ -54,6 +54,7 @@ public:
   void parseAccelData(); //Load sensor data into global vars. Call after new data is avaiable.
   void getTempData();
 
+  void enableAccel(uint8_t xen, uint8_t yen, uint8_t zen);  //Enable the accelerometer sensor
   void enableTemperature();  //Enable the onboard temp sensor
   void disableTemperature(); //Disable the onboard temp sensor
 
